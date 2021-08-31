@@ -36,4 +36,6 @@ body {
 }
 .link {
    text-decoration: none;
+   word-break: break-all;
+   word-wrap: normal;
 }

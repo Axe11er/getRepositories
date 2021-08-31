@@ -29,16 +29,16 @@ const eventHandler = debounce(e => {
 
 input.addEventListener('keydown', eventHandler);
 
-const search = async inputText => {
+const search = async request => {
    const response = await fetch(
-      `https://api.github.com/legacy/repos/search/${inputText}`
+      `https://api.github.com/search/repositories?q=${request}`
    );
    const result = [];
    try {
       const repositories = await response.json();
+
       for (let i = 0; i < 5; i++) {
-         if (repositories.repositories[i])
-            result.push(repositories.repositories[i]);
+         if (repositories.items[i]) result.push(repositories.items[i]);
       }
       return result;
    } catch (error) {
@@ -50,16 +50,16 @@ const createCard = repository => {
    const card = document.createElement('div');
    const cardText = document.createElement('a');
    const close = document.createElement('button');
-   const name = document.createElement('p');
+   const name = document.createElement('span');
    const owner = document.createElement('p');
    const score = document.createElement('p');
    card.classList.add('card');
-   cardText.href = repository.url;
+   cardText.href = repository.html_url;
    cardText.classList.add('link');
    cardText.target = '_blank';
    name.textContent = `Name: ${repository.name}`;
-   owner.textContent = `Owner: ${repository.owner}`;
-   score.textContent = `Score: ${repository.score}`;
+   owner.textContent = `Owner: ${repository.owner.login}`;
+   score.textContent = `Stars: ${repository.stargazers_count}`;
    close.textContent = 'X';
    close.classList.add('close');
    cardText.appendChild(name);
@@ -75,7 +75,7 @@ const createCard = repository => {
 
 const createAutocomplete = repository => {
    const autocomplete = document.createElement('p');
-   autocomplete.textContent = repository.username;
+   autocomplete.textContent = repository.name;
    container.appendChild(autocomplete);
    container.style.display = 'flex';
    autocomplete.addEventListener('click', () => {
