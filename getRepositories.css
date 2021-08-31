@@ -1,4 +1,5 @@
 body {
+   background-image: linear-gradient(to right, gainsboro, aliceblue);
    background-color: gainsboro;
 }
 
@@ -7,23 +8,28 @@ body {
    flex-flow: column;
    position: absolute;
    top: 50px;
-   left: 20px;
+   left: 25px;
    width: 50%;
    border: 2px solid purple;
-   background-color: white;
+   background-color: whitesmoke;
    padding: 5px;
    cursor: pointer;
 }
 
 .card {
+   background-color: aliceblue;
    display: flex;
    flex-flow: row;
    justify-content: space-between;
-   width: 25%;
+   font-size: 18px;
+   max-width: 500px;
    border: 2px solid black;
    padding: 5px;
+   margin-bottom: 10px;
 }
 .search {
+   position: relative;
+   margin-left: 60px;
    width: 50%;
    height: 50px;
    font-size: 32px;
@@ -38,4 +44,19 @@ body {
    text-decoration: none;
    word-break: break-all;
    word-wrap: normal;
+}
+label {
+   position: relative;
+}
+
+label::before {
+   position: absolute;
+   content: '';
+   width: 50px;
+   height: 50px;
+   top: -22px;
+   left: 0;
+
+   background: url('./github-icon.svg') no-repeat right center;
+   background-size: contain;
 }
