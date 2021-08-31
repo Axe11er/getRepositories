@@ -36,6 +36,7 @@ const search = async inputText => {
    const result = [];
    try {
       const repositories = await response.json();
+      console.log(repositories);
       for (let i = 0; i < 5; i++) {
          if (repositories.repositories[i])
             result.push(repositories.repositories[i]);
@@ -54,7 +55,7 @@ const createCard = repository => {
    const owner = document.createElement('p');
    const score = document.createElement('p');
    card.classList.add('card');
-   cardText.href = `https://github.com/${repository.username}`;
+   cardText.href = repository.url;
    cardText.classList.add('link');
    cardText.target = '_blank';
    name.textContent = `Name: ${repository.name}`;
