@@ -84,7 +84,7 @@ const createAutocomplete = repository => {
    container.style.display = 'flex';
    autocomplete.addEventListener('click', () => {
       container.style.display = 'none';
-      input.insertAdjacentElement('afterend', createCard(repository));
-      input.value = null;
+      search.insertAdjacentElement('afterend', createCard(repository));
+      search.value = null;
    });
 };
