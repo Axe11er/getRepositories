@@ -41,6 +41,7 @@ body {
    font-size: 100px;
 }
 .link {
+   flex-grow: 1;
    text-decoration: none;
    word-break: break-all;
    word-wrap: normal;
