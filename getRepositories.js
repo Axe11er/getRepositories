@@ -40,7 +40,6 @@ const sendRequest = async request => {
    const result = [];
    try {
       const repositories = await response.json();
-
       for (let i = 0; i < 5; i++) {
          if (repositories.items[i]) result.push(repositories.items[i]);
       }
@@ -54,7 +53,7 @@ const createCard = repository => {
    const card = document.createElement('div');
    const cardText = document.createElement('a');
    const close = document.createElement('button');
-   const name = document.createElement('span');
+   const name = document.createElement('p');
    const owner = document.createElement('p');
    const stars = document.createElement('p');
    card.classList.add('card');
