@@ -1,0 +1,39 @@
+body {
+   background-color: gainsboro;
+}
+
+.container {
+   display: none;
+   flex-flow: column;
+   position: absolute;
+   top: 50px;
+   left: 20px;
+   width: 50%;
+   border: 2px solid purple;
+   background-color: white;
+   padding: 5px;
+   cursor: pointer;
+}
+
+.card {
+   display: flex;
+   flex-flow: row;
+   justify-content: space-between;
+   width: 25%;
+   border: 2px solid black;
+   padding: 5px;
+}
+.search {
+   width: 50%;
+   height: 50px;
+   font-size: 32px;
+   outline: 2px solid purple;
+   border: none;
+   margin-bottom: 250px;
+}
+.close {
+   font-size: 100px;
+}
+.link {
+   text-decoration: none;
+}
