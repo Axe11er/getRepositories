@@ -1,4 +1,4 @@
-const input = document.querySelector('input');
+const input = document.querySelector('.search');
 const container = document.querySelector('.container');
 
 const debounce = (cb, debounceTime) => {
@@ -15,7 +15,7 @@ const eventHandler = debounce(e => {
    container.textContent = null;
    container.style.display = 'none';
    if (e.target.value) {
-      search(e.target.value)
+      sendRequest(e.target.value)
          .then(repositories => {
             container.textContent = null;
             container.style.display = 'none';
@@ -29,7 +29,7 @@ const eventHandler = debounce(e => {
 
 input.addEventListener('keydown', eventHandler);
 
-const search = async request => {
+const sendRequest = async request => {
    const response = await fetch(
       `https://api.github.com/search/repositories?q=${request}`
    );
@@ -52,19 +52,19 @@ const createCard = repository => {
    const close = document.createElement('button');
    const name = document.createElement('span');
    const owner = document.createElement('p');
-   const score = document.createElement('p');
+   const stars = document.createElement('p');
    card.classList.add('card');
    cardText.href = repository.html_url;
    cardText.classList.add('link');
    cardText.target = '_blank';
    name.textContent = `Name: ${repository.name}`;
    owner.textContent = `Owner: ${repository.owner.login}`;
-   score.textContent = `Stars: ${repository.stargazers_count}`;
+   stars.textContent = `Stars: ${repository.stargazers_count}`;
    close.textContent = 'X';
    close.classList.add('close');
    cardText.appendChild(name);
    cardText.appendChild(owner);
-   cardText.appendChild(score);
+   cardText.appendChild(stars);
    card.appendChild(cardText);
    card.appendChild(close);
    close.addEventListener('click', () => {
