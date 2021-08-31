@@ -36,7 +36,6 @@ const search = async inputText => {
    const result = [];
    try {
       const repositories = await response.json();
-      console.log(repositories);
       for (let i = 0; i < 5; i++) {
          if (repositories.repositories[i])
             result.push(repositories.repositories[i]);
