@@ -1,4 +1,4 @@
-const input = document.querySelector('.search');
+const search = document.querySelector('.search');
 const container = document.querySelector('.container');
 
 const debounce = (cb, debounceTime) => {
@@ -12,13 +12,11 @@ const debounce = (cb, debounceTime) => {
 };
 
 const eventHandler = debounce(e => {
-   container.textContent = null;
-   container.style.display = 'none';
+   hideAutocomplete();
    if (e.target.value) {
       sendRequest(e.target.value)
          .then(repositories => {
-            container.textContent = null;
-            container.style.display = 'none';
+            hideAutocomplete();
             repositories.forEach(repository => {
                createAutocomplete(repository);
             });
@@ -27,7 +25,14 @@ const eventHandler = debounce(e => {
    }
 }, 700);
 
-input.addEventListener('keydown', eventHandler);
+const hideAutocomplete = () => {
+   container.textContent = null;
+   container.style.display = 'none';
+};
+
+search.addEventListener('keydown', eventHandler);
+search.addEventListener('blur', hideAutocomplete);
+search.addEventListener('search', hideAutocomplete);
 
 const sendRequest = async request => {
    const response = await fetch(
