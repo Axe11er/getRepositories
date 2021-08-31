@@ -31,7 +31,6 @@ const hideAutocomplete = () => {
 };
 
 search.addEventListener('keydown', eventHandler);
-search.addEventListener('blur', hideAutocomplete);
 search.addEventListener('search', hideAutocomplete);
 
 const sendRequest = async request => {
