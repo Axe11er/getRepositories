@@ -51,24 +51,16 @@ const sendRequest = async request => {
 
 const createCard = repository => {
    const card = document.createElement('div');
-   const cardText = document.createElement('a');
    const close = document.createElement('button');
-   const name = document.createElement('p');
-   const owner = document.createElement('p');
-   const stars = document.createElement('p');
    card.classList.add('card');
-   cardText.href = repository.html_url;
-   cardText.classList.add('link');
-   cardText.target = '_blank';
-   name.textContent = `Name: ${repository.name}`;
-   owner.textContent = `Owner: ${repository.owner.login}`;
-   stars.textContent = `Stars: ${repository.stargazers_count}`;
    close.textContent = 'X';
    close.classList.add('close');
-   cardText.appendChild(name);
-   cardText.appendChild(owner);
-   cardText.appendChild(stars);
-   card.appendChild(cardText);
+   card.innerHTML = `
+   <a href = ${repository.html_url} class='link' target='_blank'>
+   <p>Name: ${repository.name}</p>
+   <p>Owner: ${repository.owner.login}</p>
+   <p>Stars: ${repository.stargazers_count}</p>
+   </a>`;
    card.appendChild(close);
    close.addEventListener('click', () => {
       card.remove();
