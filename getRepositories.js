@@ -37,13 +37,9 @@ const sendRequest = async request => {
    const response = await fetch(
       `https://api.github.com/search/repositories?q=${request}`
    );
-   const result = [];
    try {
       const repositories = await response.json();
-      for (let i = 0; i < 5; i++) {
-         if (repositories.items[i]) result.push(repositories.items[i]);
-      }
-      return result;
+      return repositories.items.slice(0, 5);
    } catch (error) {
       throw error;
    }
